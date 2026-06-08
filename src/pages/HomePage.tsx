@@ -1,6 +1,6 @@
 import Header from "../components/Header.tsx";
 
-const HomePage = () => (
+export const HomePage = () => (
     <>
         <Header />
 
@@ -10,5 +10,3 @@ const HomePage = () => (
         </section>
     </>
 );
-
-export default HomePage;

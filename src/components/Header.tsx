@@ -1,3 +1,5 @@
+import {Link} from "@tanstack/react-router";
+
 const Header = () => {
 
 
@@ -18,7 +20,9 @@ const Header = () => {
 
             <nav>
                 <ul>
-                    <li>Accueil</li>
+                    <li>
+                        <Link to={"/"}>Accueil</Link>
+                    </li>
                     <li>Les évènements</li>
                     <li>Contact</li>
                     {isAuthenticated() ? (
