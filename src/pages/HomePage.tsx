@@ -10,7 +10,7 @@ const HomePage = () => {
 
     return (
         <>
-            <Header authenticatedUser={authenticatedUser} />
+            <Header />
 
             <section>
                 <h4>Ce site présente tous les events du 4L trophy</h4>

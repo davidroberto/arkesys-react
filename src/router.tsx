@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-router';
 import HomePage from './pages/HomePage.tsx';
 import ListEventsPage from "./pages/ListEventsPage.tsx";
+import LoginPage from "./pages/LoginPage.tsx";
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -24,7 +25,13 @@ const listEventsRoute = createRoute({
   component: ListEventsPage,
 });
 
-export const routeTree = rootRoute.addChildren([indexRoute, listEventsRoute]);
+const loginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/login',
+  component: LoginPage,
+});
+
+export const routeTree = rootRoute.addChildren([indexRoute, listEventsRoute, loginRoute]);
 export const router = createRouter({ routeTree });
 
 declare module '@tanstack/react-router' {

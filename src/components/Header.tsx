@@ -1,12 +1,17 @@
 import {Link} from "@tanstack/react-router";
 
-const Header = ({authenticatedUser}) => {
-
+const Header = () => {
 
     const getTitleFromApi = (): string => {
         // fake appel fetch pour récupérer le titre depuis un backend API
         return "Les évènements 4L Trophy";
     }
+
+    const getAuthenticatedUser = (): string | null => {
+        return null;
+    }
+
+    const authenticatedUser = getAuthenticatedUser();
 
     return (
         <header>
@@ -24,7 +29,7 @@ const Header = ({authenticatedUser}) => {
                     {authenticatedUser ? (
                         <li>{authenticatedUser}</li>
                     ) : (
-                        <li>Vous connecter</li>
+                        <li> <Link to={"/login"}> Vous connecter</Link></li>
                     )}
                 </ul>
             </nav>
