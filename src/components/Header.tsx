@@ -25,7 +25,9 @@ const Header = () => {
                     <li>
                         <Link to={"/events"}> Les évènements</Link>
                     </li>
-                    <li>Contact</li>
+                    <li>
+                        <Link to={"/meals"}> Les recettes de cuisine du food truc du 4L Trophy</Link>
+                    </li>
                     {authenticatedUser ? (
                         <li>{authenticatedUser}</li>
                     ) : (
