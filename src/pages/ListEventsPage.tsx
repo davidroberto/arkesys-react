@@ -1,4 +1,5 @@
 import Header from "../components/Header.tsx";
+import useFetch from "../hooks/useFetch.tsx";
 
 const ListEventsPage = () => {
 
@@ -24,6 +25,8 @@ const ListEventsPage = () => {
 
     const events = getEventsFromApi();
 
+
+    const events = useFetch('http://listEvents/api/events.php');
 
     return (
         <>
