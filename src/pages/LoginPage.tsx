@@ -1,14 +1,19 @@
 import Header from "../components/Header.tsx";
+import {useState} from "react";
 
 const LoginPage = () => {
 
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const loginUser = (event) => {
         event.preventDefault();
 
-        console.log("loginUser");
-    }
+       const email = event.target.email.value;
+       const password = event.target.password.value;
 
+       // const isAuthenticated = fetch('api/login');
+        setIsAuthenticated(true);
+    }
 
     return (
         <>
@@ -28,6 +33,8 @@ const LoginPage = () => {
                 <button type="submit">OK</button>
 
             </form>
+
+            {isAuthenticated && <p>Connexion réussie!</p>}
         </>
 
     )
