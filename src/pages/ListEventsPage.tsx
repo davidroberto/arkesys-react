@@ -1,4 +1,6 @@
-const ListEvents = () => {
+import Header from "../components/Header.tsx";
+
+const ListEventsPage = () => {
 
     const getEventsFromApi = () => {
         return [
@@ -24,17 +26,21 @@ const ListEvents = () => {
 
 
     return (
-        <section>
-            <h2>Tous les évènements</h2>
-            {events.map((event) => (
-                <article>
-                    <h3>{event.title}</h3>
-                    <i>{event.date}</i>
-                    <p>{event.content}</p>
-                </article>
-            ))}
-        </section>
+        <>
+            <Header />
+
+            <section>
+                <h2>Tous les évènements</h2>
+                {events.map((event) => (
+                    <article>
+                        <h3>{event.title}</h3>
+                        <i>{event.date}</i>
+                        <p>{event.content}</p>
+                    </article>
+                ))}
+            </section>
+            </>
     )
 }
 
-export default ListEvents;
+export default ListEventsPage;
