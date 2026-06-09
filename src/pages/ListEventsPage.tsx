@@ -1,5 +1,4 @@
 import Header from "../components/Header.tsx";
-import useFetch from "../hooks/useFetch.tsx";
 
 const ListEventsPage = () => {
 

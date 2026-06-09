@@ -4,7 +4,7 @@ import {Link} from "@tanstack/react-router";
 
 const ListMealsPage = () => {
 
-    const { data, isLoading } = useFetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
+    const { data, isLoading, isSuccess, isError, error } = useFetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
 
     return (
         <>
@@ -13,17 +13,18 @@ const ListMealsPage = () => {
 
             {isLoading && <p>Chargement en cours...</p>}
 
+            {isError && <p>Une erreur est survenue : {error}</p>}
 
-            <section>
-                {data?.meals.map((meal, index) => (
-                    <div key={index}>
-                        <h2>{meal.strMeal}</h2>
-                        <Link to={"/meals/"+meal.idMeal}>Voir la recette</Link>
-                    </div>
-                ))}
-            </section>
-
-            {data?.meals.length > 0 && <p>Recettes en chargement...</p>}
+            {isSuccess && (
+                <section>
+                    {data?.meals.map((meal: any, index: number) => (
+                        <div key={index}>
+                            <h2>{meal.strMeal}</h2>
+                            <Link to={"/meals/"+meal.idMeal}>Voir la recette</Link>
+                        </div>
+                    ))}
+                </section>
+            )}
         </>
 
     )

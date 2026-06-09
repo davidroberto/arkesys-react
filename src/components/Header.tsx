@@ -1,5 +1,5 @@
 import {Link, useNavigate} from "@tanstack/react-router";
-import {useAuth} from "../auth/useAuth.ts";
+import {useAuth} from "../hooks/useAuth.tsx";
 
 const Header = () => {
 
@@ -9,6 +9,7 @@ const Header = () => {
     }
 
     const { user, logout } = useAuth();
+
     const navigate = useNavigate();
 
     const handleLogout = () => {

@@ -7,7 +7,7 @@ const DisplayMealByIdPage = () => {
     const params = useParams({ strict: false });
     const mealId = params.mealId;
 
-    const { data, isLoading } = useFetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+mealId);
+    const { data, isLoading, isSuccess, isError, error } = useFetch('https://www.themealdb.com/api/json/v1/1/lookup.php?i='+mealId);
 
     return (
         <>
@@ -17,12 +17,15 @@ const DisplayMealByIdPage = () => {
 
             {isLoading && <p>Chargement en cours...</p>}
 
-            <article>
-                <h2>{data?.meals[0].strMeal}</h2>
-                <img src={data?.meals[0].strMealThumb} alt={data?.meals[0].strMeal} />
-                <p>{data?.meals[0].strInstructions}</p>
-            </article>
+            {isError && <p>Une erreur est survenue : {error}</p>}
 
+            {isSuccess && (
+                <article>
+                    <h2>{data?.meals[0].strMeal}</h2>
+                    <img src={data?.meals[0].strMealThumb} alt={data?.meals[0].strMeal} />
+                    <p>{data?.meals[0].strInstructions}</p>
+                </article>
+            )}
 
         </>
     );

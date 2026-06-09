@@ -1,7 +1,7 @@
 import type { SyntheticEvent } from "react";
 import Header from "../components/Header.tsx";
 import { useNavigate } from "@tanstack/react-router";
-import { useAuth } from "../auth/useAuth.ts";
+import { useAuth } from "../hooks/useAuth.tsx";
 
 const LoginPage = () => {
 
