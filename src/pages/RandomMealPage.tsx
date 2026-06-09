@@ -1,4 +1,5 @@
 import useFetch from "../hooks/useFetch.tsx";
+import Header from "../components/Header.tsx";
 
 const RandomMealPage = () => {
 
@@ -9,16 +10,21 @@ const RandomMealPage = () => {
     }
 
     return (
-        <section>
-            <article>
-                <h2>{data?.meals[0].strMeal}</h2>
-                <img src={data?.meals[0].strMealThumb} alt={data?.meals[0].strMeal} />
-                <p>{data?.meals[0].strInstructions}</p>
-            </article>
+        <>
+            <Header />
 
-            <button onClick={displayNewRandomMeal}>Demander à changer la carte du jour</button>
+            <section>
+                <article>
+                    <h2>{data?.meals[0].strMeal}</h2>
+                    <img src={data?.meals[0].strMealThumb} alt={data?.meals[0].strMeal} />
+                    <p>{data?.meals[0].strInstructions}</p>
+                </article>
 
-        </section>
+                <button onClick={displayNewRandomMeal}>Demander à changer la carte du jour</button>
+
+            </section>
+        </>
+
 
     );
 

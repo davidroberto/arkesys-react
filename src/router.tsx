@@ -9,6 +9,7 @@ import ListEventsPage from "./pages/ListEventsPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ListMealsPage from "./pages/ListMealsPage.tsx";
 import RandomMealPage from "./pages/RandomMealPage.tsx";
+import DisplayMealByIdPage from "./pages/DisplayMealByIdPage.tsx";
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -46,12 +47,20 @@ const randomMealPageRoute = createRoute({
   component: RandomMealPage,
 });
 
+const displayMealByIdPageRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/meals/$mealId',
+  component: DisplayMealByIdPage,
+});
+
+
 export const routeTree = rootRoute.addChildren([
     indexRoute,
     listEventsRoute,
     loginRoute,
     listMealsPageRoute,
-    randomMealPageRoute
+    randomMealPageRoute,
+    displayMealByIdPageRoute
 ]);
 
 
