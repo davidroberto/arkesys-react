@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {toast} from "sonner";
 
 const useFetch = (url: string) => {
 
@@ -17,6 +18,7 @@ const useFetch = (url: string) => {
         fetch(url)
             .then(jsonApiResponse => {
                 if (!jsonApiResponse.ok) {
+                    toast.error(`Erreur ${jsonApiResponse.status} sur ${url}`);
                     throw new Error(`Erreur ${jsonApiResponse.status} sur ${url}`);
                 }
                 return jsonApiResponse.json();
@@ -24,11 +26,15 @@ const useFetch = (url: string) => {
             .then(dataResponse => {
                 setData(dataResponse);
                 setIsSuccess(true);
+                toast.success('Données chargées');
+
                 setIsLoading(false);
             })
             .catch(caughtError => {
                 setIsError(true);
                 setError(caughtError.message);
+                toast.error('"Problème de chargement des données, veuillez re-essayer ou contacter un administrator.');
+
                 setIsLoading(false);
             });
     }

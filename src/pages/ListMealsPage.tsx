@@ -4,7 +4,7 @@ import {Link} from "@tanstack/react-router";
 
 const ListMealsPage = () => {
 
-    const { data, isLoading, isSuccess, isError, error } = useFetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
+    const { data, isLoading, isSuccess, isError, error } = useFetch('https://www.thldb.com/api/json/v1/1/search.php?s');
 
     return (
         <>
