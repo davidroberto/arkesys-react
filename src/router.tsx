@@ -10,7 +10,7 @@ import LoginPage from "./pages/LoginPage.tsx";
 import ListMealsPage from "./pages/ListMealsPage.tsx";
 import RandomMealPage from "./pages/RandomMealPage.tsx";
 import DisplayMealByIdPage from "./pages/DisplayMealByIdPage.tsx";
-import { AuthProvider } from "./hooks/useAuth.tsx";
+import { AuthProvider } from "./context/AuthContext.tsx";
 
 const rootRoute = createRootRoute({
   component: () => (

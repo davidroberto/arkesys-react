@@ -1,9 +1,10 @@
+import { useContext } from "react";
 import Header from "../components/Header.tsx";
-import {useAuth} from "../hooks/useAuth.tsx";
+import { AuthContext } from "../context/AuthContext.tsx";
 
 const HomePage = () => {
 
-    const { isAuthenticated } = useAuth();
+    const { user } = useContext(AuthContext);
 
     return (<>
             <Header/>
@@ -13,7 +14,7 @@ const HomePage = () => {
                 <button>Accéder à la page des events</button>
             </section>
 
-            {isAuthenticated && <section>
+            {user && <section>
                 <p>Vous êtes authentifié, vous avez le droit de voir cette section</p>
             </section>}
         </>);

@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 async function fakeLogin(email, password) {
@@ -31,14 +31,14 @@ function readUserFromStorage() {
   }
 }
 
-const AuthContext = createContext<any>(null);
+// Contexte partagé : les composants y récupèrent l'utilisateur connecté via useContext(AuthContext).
+export const AuthContext = createContext<any>(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => readUserFromStorage());
 
   async function login(email, password) {
     const token = await fakeLogin(email, password);
-
     localStorage.setItem("auth_token", token);
     setUser(jwtDecode(token));
   }
@@ -49,19 +49,8 @@ export function AuthProvider({ children }) {
   }
 
   return (
-      <AuthContext.Provider
-          value={{
-            user,
-            isAuthenticated: user !== null,
-            login,
-            logout,
-          }}
-      >
+      <AuthContext.Provider value={{ user, login, logout }}>
         {children}
       </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  return useContext(AuthContext);
 }

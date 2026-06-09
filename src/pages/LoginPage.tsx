@@ -1,11 +1,11 @@
-import type { SyntheticEvent } from "react";
+import { useContext, type SyntheticEvent } from "react";
 import Header from "../components/Header.tsx";
 import { useNavigate } from "@tanstack/react-router";
-import { useAuth } from "../hooks/useAuth.tsx";
+import { AuthContext } from "../context/AuthContext.tsx";
 
 const LoginPage = () => {
 
-    const { login } = useAuth();
+    const { login } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
