@@ -4,16 +4,20 @@ const useFetch = (url: string) => {
 
     const [data, setData] = useState(null);
 
-    useEffect(() => {
+    const fetchData = () => {
         fetch(url)
             .then(jsonApiResponse => jsonApiResponse.json())
             .then(dataResponse => {
                 setData(dataResponse);
             })
         ;
-    }, [url]);
+    }
 
-    return data;
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    return {data, fetchData};
 }
 
 export default useFetch;

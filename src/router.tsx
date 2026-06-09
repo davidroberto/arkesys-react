@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage.tsx';
 import ListEventsPage from "./pages/ListEventsPage.tsx";
 import LoginPage from "./pages/LoginPage.tsx";
 import ListMealsPage from "./pages/ListMealsPage.tsx";
+import RandomMealPage from "./pages/RandomMealPage.tsx";
 
 const rootRoute = createRootRoute({
   component: () => <Outlet />,
@@ -38,7 +39,22 @@ const listMealsPageRoute = createRoute({
   component: ListMealsPage,
 });
 
-export const routeTree = rootRoute.addChildren([indexRoute, listEventsRoute, loginRoute, listMealsPageRoute]);
+
+const randomMealPageRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/random-meal',
+  component: RandomMealPage,
+});
+
+export const routeTree = rootRoute.addChildren([
+    indexRoute,
+    listEventsRoute,
+    loginRoute,
+    listMealsPageRoute,
+    randomMealPageRoute
+]);
+
+
 export const router = createRouter({ routeTree });
 
 declare module '@tanstack/react-router' {

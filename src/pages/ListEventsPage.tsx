@@ -24,10 +24,7 @@ const ListEventsPage = () => {
     }
 
     const events = getEventsFromApi();
-
-
-    const events = useFetch('http://listEvents/api/events.php');
-
+    
     return (
         <>
             <Header />
