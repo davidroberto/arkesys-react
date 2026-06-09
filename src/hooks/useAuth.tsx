@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 async function fakeLogin(email, password) {
@@ -31,7 +31,9 @@ function readUserFromStorage() {
   }
 }
 
-export function useAuth() {
+const AuthContext = createContext<any>(null);
+
+export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => readUserFromStorage());
 
   async function login(email, password) {
@@ -46,10 +48,20 @@ export function useAuth() {
     setUser(null);
   }
 
-  return {
-    user,
-    isAuthenticated: user !== null,
-    login,
-    logout,
-  } as any;
+  return (
+      <AuthContext.Provider
+          value={{
+            user,
+            isAuthenticated: user !== null,
+            login,
+            logout,
+          }}
+      >
+        {children}
+      </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  return useContext(AuthContext);
 }

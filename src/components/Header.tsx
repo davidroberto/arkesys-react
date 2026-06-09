@@ -4,7 +4,6 @@ import {useAuth} from "../hooks/useAuth.tsx";
 const Header = () => {
 
     const getTitleFromApi = (): string => {
-        // fake appel fetch pour récupérer le titre depuis un backend API
         return "Les évènements 4L Trophy";
     }
 
@@ -45,6 +44,7 @@ const Header = () => {
                     )}
                 </ul>
             </nav>
+
         </header>
     )
 

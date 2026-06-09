@@ -6,6 +6,7 @@ import { useAuth } from "../hooks/useAuth.tsx";
 const LoginPage = () => {
 
     const { login } = useAuth();
+
     const navigate = useNavigate();
 
     const loginUser = async (event: SyntheticEvent<HTMLFormElement>) => {
@@ -15,10 +16,8 @@ const LoginPage = () => {
         const email = (form.elements.namedItem("email") as HTMLInputElement).value;
         const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
-        // "appel backend" qui renvoie un JWT, stocké puis décodé par le hook
         await login(email, password);
 
-        // on redirige : la page d'accueil relira le token frais
         navigate({ to: "/" });
     }
 
