@@ -1,4 +1,5 @@
-import {Link} from "@tanstack/react-router";
+import {Link, useNavigate} from "@tanstack/react-router";
+import {useAuth} from "../auth/useAuth.ts";
 
 const Header = () => {
 
@@ -7,11 +8,13 @@ const Header = () => {
         return "Les évènements 4L Trophy";
     }
 
-    const getAuthenticatedUser = (): string | null => {
-        return null;
-    }
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
-    const authenticatedUser = getAuthenticatedUser();
+    const handleLogout = () => {
+        logout();
+        navigate({ to: "/" });
+    }
 
     return (
         <header>
@@ -31,8 +34,11 @@ const Header = () => {
                     <li>
                         <Link to={"/random-meal"}> La carte du jour pour le 4L trophy</Link>
                     </li>
-                    {authenticatedUser ? (
-                        <li>{authenticatedUser}</li>
+                    {user ? (
+                        <>
+                            <li>{user.name}</li>
+                            <li><button onClick={handleLogout}>Se déconnecter</button></li>
+                        </>
                     ) : (
                         <li> <Link to={"/login"}> Vous connecter</Link></li>
                     )}

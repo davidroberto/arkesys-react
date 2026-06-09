@@ -1,18 +1,25 @@
+import type { SyntheticEvent } from "react";
 import Header from "../components/Header.tsx";
-import {useState} from "react";
+import { useNavigate } from "@tanstack/react-router";
+import { useAuth } from "../auth/useAuth.ts";
 
 const LoginPage = () => {
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
-    const loginUser = (event) => {
+    const loginUser = async (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-       const email = event.target.email.value;
-       const password = event.target.password.value;
+        const form = event.currentTarget;
+        const email = (form.elements.namedItem("email") as HTMLInputElement).value;
+        const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
-       // const isAuthenticated = fetch('api/login');
-        setIsAuthenticated(true);
+        // "appel backend" qui renvoie un JWT, stocké puis décodé par le hook
+        await login(email, password);
+
+        // on redirige : la page d'accueil relira le token frais
+        navigate({ to: "/" });
     }
 
     return (
@@ -33,10 +40,7 @@ const LoginPage = () => {
                 <button type="submit">OK</button>
 
             </form>
-
-            {isAuthenticated && <p>Connexion réussie!</p>}
         </>
-
     )
 }
 

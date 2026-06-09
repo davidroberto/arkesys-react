@@ -3,7 +3,7 @@ import Header from "../components/Header.tsx";
 
 const RandomMealPage = () => {
 
-    const {data, fetchData} = useFetch('https://www.themealdb.com/api/json/v1/1/random.php')
+    const {data, fetchData, isLoading} = useFetch('https://www.themealdb.com/api/json/v1/1/random.php')
 
     const displayNewRandomMeal = () => {
         fetchData();
@@ -14,6 +14,9 @@ const RandomMealPage = () => {
             <Header />
 
             <section>
+
+                {isLoading && <p>Chargement en cours...</p>}
+
                 <article>
                     <h2>{data?.meals[0].strMeal}</h2>
                     <img src={data?.meals[0].strMealThumb} alt={data?.meals[0].strMeal} />

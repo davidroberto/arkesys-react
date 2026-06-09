@@ -1,12 +1,9 @@
 import Header from "../components/Header.tsx";
+import {useAuth} from "../auth/useAuth.ts";
 
 const HomePage = () => {
 
-    const getAuthenticatedUser = (): string | null => {
-        return null;
-    }
-
-    const authenticatedUser = getAuthenticatedUser();
+    const { isAuthenticated } = useAuth();
 
     return (<>
             <Header/>
@@ -16,7 +13,7 @@ const HomePage = () => {
                 <button>Accéder à la page des events</button>
             </section>
 
-            {authenticatedUser && <section>
+            {isAuthenticated && <section>
                 <p>Vous êtes authentifié, vous avez le droit de voir cette section</p>
             </section>}
         </>);

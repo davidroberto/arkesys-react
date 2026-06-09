@@ -4,12 +4,15 @@ import {Link} from "@tanstack/react-router";
 
 const ListMealsPage = () => {
 
-    const { data } = useFetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
+    const { data, isLoading } = useFetch('https://www.themealdb.com/api/json/v1/1/search.php?s');
 
     return (
         <>
             <Header />
             <h2>Liste des recettes de cuisines</h2>
+
+            {isLoading && <p>Chargement en cours...</p>}
+
 
             <section>
                 {data?.meals.map((meal, index) => (
